@@ -32,7 +32,31 @@
 #endif
 
 char* get_tile_path_r(char* buffer, size_t size, const char* prefix, int x, int y, int zoom, const char* suffix) {
-	if (snprintf(buffer, size, "%s/%d/%d/%d%s", prefix, zoom, x, y, suffix) >= (int)size)
+	
+	//fill up with zeros
+	string zerosX = "000000000";
+	char* intStrX = itoa(x);
+	string strX = string(intStrX);
+	int lengthX = strX.length();
+	zerosX.replace(9-lengthX,lengthX,strX);
+	//partition into sets of 3
+	string x1 = zerosX.substr(0,3);
+	string x2 = zerosX.substr(3,3);
+	string x3 = zerosX.substr(6,3);
+	
+	//fill up with zeros
+	string zerosY = "000000000";
+	char* intStrY = itoa(y);
+	string strY = string(intStrY);
+	int lengthY = strY.length();
+	zerosY.replace(9-lengthY,lengthY,strY);
+	//partition into sets of 3
+	string y1 = zerosY.substr(0,3);
+	string y2 = zerosY.substr(3,3);
+	string y3 = zerosY.substr(6,3);
+	
+	
+	if (snprintf(buffer, size, "%s/%d/%s/%s/%s/%s/%s/%s%s", prefix, zoom, x1, x2, x3, y1, y2, y3, suffix) >= (int)size)
 		return NULL;
 
 	return buffer;
