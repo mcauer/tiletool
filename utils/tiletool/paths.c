@@ -34,22 +34,20 @@
 char* get_tile_path_r(char* buffer, size_t size, const char* prefix, int x, int y, int zoom, const char* suffix) {
 	
 	//fill up with zeros
-	string zerosX = "000000000";
-	char* intStrX = itoa(x);
-	string strX = string(intStrX);
-	int lengthX = strX.length();
-	zerosX.replace(9-lengthX,lengthX,strX);
+	char zerosXc [9];
+	snprintf(zerosXc, 9, "%09d", x);
+	std::string zerosX = string(zerosXc);
+	
 	//partition into sets of 3
-	string x1 = zerosX.substr(0,3);
-	string x2 = zerosX.substr(3,3);
-	string x3 = zerosX.substr(6,3);
+	std::string x1 = zerosX.substr(0,3);
+	std::string x2 = zerosX.substr(3,3);
+	std::string x3 = zerosX.substr(6,3);
 	
 	//fill up with zeros
-	string zerosY = "000000000";
-	char* intStrY = itoa(y);
-	string strY = string(intStrY);
-	int lengthY = strY.length();
-	zerosY.replace(9-lengthY,lengthY,strY);
+	char zerosYc [9];
+	snprintf(zerosYc, 9, "%09d", y);
+	std::string zerosY = string(zerosYc);
+	
 	//partition into sets of 3
 	string y1 = zerosY.substr(0,3);
 	string y2 = zerosY.substr(3,3);
