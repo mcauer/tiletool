@@ -1,6 +1,26 @@
-# tiletool
+# Info
 
-[![Build Status](https://travis-ci.org/AMDmi3/tiletool.svg?branch=master)](https://travis-ci.org/AMDmi3/tiletool)
+This is a fork of the really helpful tiletool sowtware of @AMDmi3.
+The reason to fork his software was the need to change the directory layout the tiletool uses.
+Originally tiles are read and written in the form of tms-style
+```
+{path_to_tiles}/{z}/{x}/{y}.png
+```
+
+The only difference to the original is that this one uses the directory layout used by Mapproxy (https://github.com/mapproxy/mapproxy) which is:
+```
+{path_to_tiles}/{zz}/{xxx}/{xxx}/{xxx}/{yyy}/{yyy}/{yyy}.png
+```
+
+To compile it I had to install:
+```
+sudo apt install cmake
+sudo apt install zlib1g-dev
+sudo apt install libpng16-dev
+```
+
+
+# tiletool
 
 A tool for processing pregenerated sets of digital map tiles.
 
