@@ -1,7 +1,7 @@
 # Info
 
-This is a fork of the really helpful tiletool sowtware of @AMDmi3.
-The reason to fork his software was the need to change the directory layout the tiletool uses.
+This is a fork of the really helpful tiletool software of @AMDmi3.
+The reason to fork his software was the need to change the directory layout that the tiletool uses.
 Originally tiles are read and written in the form of tms-style
 ```
 {path_to_tiles}/{z}/{x}/{y}.png
