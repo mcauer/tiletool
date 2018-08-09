@@ -33,31 +33,51 @@
 
 char* get_tile_path_r(char* buffer, size_t size, const char* prefix, int x, int y, int zoom, const char* suffix) {
 	
-	//fill up with zeros
-	char zerosXc [9];
-	snprintf(zerosXc, 9, "%09d", x);
-	std::string zerosX = string(zerosXc);
-	
-	//partition into sets of 3
-	std::string x1 = zerosX.substr(0,3);
-	std::string x2 = zerosX.substr(3,3);
-	std::string x3 = zerosX.substr(6,3);
-	
-	//fill up with zeros
-	char zerosYc [9];
-	snprintf(zerosYc, 9, "%09d", y);
-	std::string zerosY = string(zerosYc);
-	
-	//partition into sets of 3
-	string y1 = zerosY.substr(0,3);
-	string y2 = zerosY.substr(3,3);
-	string y3 = zerosY.substr(6,3);
-	
-	
-	if (snprintf(buffer, size, "%s/%d/%s/%s/%s/%s/%s/%s%s", prefix, zoom, x1, x2, x3, y1, y2, y3, suffix) >= (int)size)
-		return NULL;
+        //fill up x with zeros
+        char zerosXc [10];
+        snprintf(zerosXc, 10, "%09d", x);
+	zerosXc[9] = '\0';
 
-	return buffer;
+	//split into chunks of 3
+	char x1[4];
+	memcpy( x1, &zerosXc[0], 3 );
+	x1[3] = '\0';
+
+	char x2[4];
+	memcpy( x2, &zerosXc[3], 3 );
+	x2[3] = '\0';
+
+	char x3[4];
+	memcpy( x3, &zerosXc[6], 3 );
+	x3[3] = '\0';
+
+        //fill up y with zeros
+        char zerosYc [10];
+        snprintf(zerosYc, 10, "%09d", y);
+	zerosYc[9] = '\0';
+
+	//split into chunks of 3
+	char y1[4];
+	memcpy( y1, &zerosYc[0], 3 );
+	y1[3] = '\0';
+
+	char y2[4];
+	memcpy( y2, &zerosYc[3], 3 );
+	y2[3] = '\0';
+
+	char y3[4];
+	memcpy( y3, &zerosYc[6], 3 );
+	y3[3] = '\0';
+
+	// fill up zoom with zeros
+	char zerosZoom[3];
+	snprintf(zerosZoom, 3, "%02d", zoom);
+	zerosZoom[2] = '\0';
+
+        if (snprintf(buffer, size, "%s/%s/%s/%s/%s/%s/%s/%s%s", prefix, zerosZoom, x1, x2, x3, y1, y2, y3, suffix) >= (int)size)
+                return NULL;
+printf("%s", buffer);
+        return buffer;
 }
 
 char* get_tile_path(const char* prefix, int x, int y, int zoom, const char* suffix) {
