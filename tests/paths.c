@@ -25,5 +25,5 @@
 #include "testing.h"
 
 BEGIN_TEST()
-	EXPECT_TRUE(strcmp(get_tile_path("foo", 1, 2, 3, ".png"), "foo/3/1/2.png") == 0);
+	EXPECT_TRUE(strcmp(get_tile_path("foo", 1, 2, 3, ".png"), "foo/03/000/000/001/000/000/002.png") == 0);
 END_TEST()
